@@ -1,5 +1,6 @@
 const express = require('express')
 const usersRouter = require('./users/users-router')
+const {logger} = require('./middleware/middleware')
 
 const server = express()
 
@@ -8,7 +9,7 @@ server.use(express.json())
 
 // global middlewares and the user's router need to be connected here
 
-server.use((req, res, next) => {
+server.use(logger, (req, res, next) => {
   next()
 })
 
